@@ -15,9 +15,12 @@ import WorkerFS from '../backend/WorkerFS';
 import HTTPRequest from '../backend/HTTPRequest';
 import ZipFS from '../backend/ZipFS';
 import IsoFS from '../backend/IsoFS';
+import BundledHTTPRequest from '../backend/BundledHTTPRequest';
+import UNPKGRequest from '../backend/UNPKGRequest';
+import DynamicHTTPRequest from '../backend/DynamicHTTPRequest';
 
 // Monkey-patch `Create` functions to check options before file system initialization.
-[AsyncMirror, Dropbox, Emscripten, FolderAdapter, HTML5FS, InMemory, IndexedDB, IsoFS, LocalStorage, MountableFileSystem, OverlayFS, WorkerFS, HTTPRequest, ZipFS].forEach((fsType: FileSystemConstructor) => {
+[AsyncMirror, Dropbox, Emscripten, FolderAdapter, HTML5FS, InMemory, IndexedDB, IsoFS, LocalStorage, MountableFileSystem, OverlayFS, WorkerFS, HTTPRequest, ZipFS, BundledHTTPRequest, UNPKGRequest, DynamicHTTPRequest].forEach((fsType: FileSystemConstructor) => {
   const create = fsType.Create;
   fsType.Create = function(opts?: any, cb?: BFSCallback<FileSystem>): void {
     const oneArg = typeof(opts) === "function";
@@ -39,7 +42,7 @@ import IsoFS from '../backend/IsoFS';
 /**
  * @hidden
  */
-const Backends = { AsyncMirror, Dropbox, Emscripten, FolderAdapter, HTML5FS, InMemory, IndexedDB, IsoFS, LocalStorage, MountableFileSystem, OverlayFS, WorkerFS, HTTPRequest, XmlHttpRequest: HTTPRequest, ZipFS };
+const Backends = { AsyncMirror, Dropbox, Emscripten, FolderAdapter, HTML5FS, InMemory, IndexedDB, IsoFS, LocalStorage, MountableFileSystem, OverlayFS, WorkerFS, HTTPRequest, XmlHttpRequest: HTTPRequest, ZipFS, BundledHTTPRequest, UNPKGRequest, DynamicHTTPRequest };
 // Make sure all backends cast to FileSystemConstructor (for type checking)
 const _: {[name: string]: FileSystemConstructor} = Backends;
 // tslint:disable-next-line:no-unused-expression
