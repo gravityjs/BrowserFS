@@ -1,6 +1,8 @@
 {
   "extends": "tslint:latest",
   "rules": {
+    "no-console": false,
+    "no-empty": [true, "allow-empty-functions"],
     "member-ordering": [true, { "order": [
       "public-static-field",
       "protected-static-field",
@@ -47,7 +49,6 @@
     "no-arg": true,
     "no-conditional-assignment": true,
     "no-construct": true,
-    "no-empty": true,
     "no-unsafe-finally": true,
     "no-unused-expression": true,
     "no-this-assignment": false,

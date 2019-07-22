@@ -1488,7 +1488,7 @@ export default class FS {
     this.stat(filename, (err, stat) => {
       let usedStat = stat;
       if (err) {
-        usedStat = new Stats(FileType.FILE, 0, undefined, 0,  0, 0, 0)
+        usedStat = new Stats(FileType.FILE, 0, undefined, 0,  0, 0, 0);
       }
 
       this.fileWatcher.watchFile(usedStat!, filename, arg2, listener);
@@ -1568,14 +1568,6 @@ export interface FSModule extends FS {
    * The FS.Stats constructor.
    */
   Stats: typeof Stats;
-  /**
-   * Retrieve the FS object backing the fs module.
-   */
-  getFSModule(): FS;
-  /**
-   * Set the FS object backing the fs module.
-   */
-  changeFSModule(newFs: FS): void;
 
   /**
    * Accessors
@@ -1584,4 +1576,12 @@ export interface FSModule extends FS {
   R_OK: number;
   W_OK: number;
   X_OK: number;
+  /**
+   * Retrieve the FS object backing the fs module.
+   */
+  getFSModule(): FS;
+  /**
+   * Set the FS object backing the fs module.
+   */
+  changeFSModule(newFs: FS): void;
 }

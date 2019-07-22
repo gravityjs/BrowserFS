@@ -15,8 +15,10 @@ interface IWatchEntry {
 }
 
 export class FileWatcher {
+
+  private watchEntries: IWatchEntry[] = [];
   public triggerWatch(filename: string, event: 'change' | 'rename', newStats?: Stats) {
-    const validEntries = this.watchEntries.filter(entry => {
+    const validEntries = this.watchEntries.filter((entry) => {
       if (entry.filename === filename) {
         return true;
       }
@@ -28,7 +30,7 @@ export class FileWatcher {
       return false;
     });
 
-    validEntries.forEach(entry => {
+    validEntries.forEach((entry) => {
       if (entry.callback) {
         entry.callback(event, filename);
       }
@@ -60,7 +62,6 @@ export class FileWatcher {
     watcher.close = () => {
       this.removeEntry(watchEntry);
     };
-
 
     if (typeof arg2 === 'object') {
       watchEntry.recursive = arg2.recursive;
@@ -102,13 +103,11 @@ export class FileWatcher {
     return watchEntry.watcher;
   }
 
-  unwatchFile(filename: string, listener: (curr: Stats, prev: Stats) => void): any {
-    this.watchEntries = this.watchEntries.filter(entry => entry.filename !== filename && entry.fileCallback !== listener);
+  public unwatchFile(filename: string, listener: (curr: Stats, prev: Stats) => void): any {
+    this.watchEntries = this.watchEntries.filter((entry) => entry.filename !== filename && entry.fileCallback !== listener);
   }
 
-  private watchEntries: IWatchEntry[] = [];
-
   private removeEntry(watchEntry: IWatchEntry) {
-    this.watchEntries = this.watchEntries.filter(en => en !== watchEntry);
+    this.watchEntries = this.watchEntries.filter((en) => en !== watchEntry);
   }
 }

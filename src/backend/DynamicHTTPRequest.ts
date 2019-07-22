@@ -139,10 +139,6 @@ export default class DynamicHTTPRequest extends BaseFileSystem implements FileSy
     }
   }
 
-  private convertAPIError(error: any) {
-    return new ApiError(error.errno, error.message, error.path);
-  }
-
   public empty(): void {
     // this._index.fileIterator(function(file: Stats) {
     //   file.fileData = null;
@@ -291,6 +287,10 @@ export default class DynamicHTTPRequest extends BaseFileSystem implements FileSy
     } finally {
       fd.closeSync();
     }
+  }
+
+  private convertAPIError(error: any) {
+    return new ApiError(error.errno, error.message, error.path);
   }
 
   private _getHTTPPath(filePath: string): string {

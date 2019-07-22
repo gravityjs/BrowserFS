@@ -243,17 +243,6 @@ export default class BundledHTTPRequest extends BaseFileSystem implements FileSy
     return xhrIsAvailable;
   }
 
-  private logRead(path: string, size: number): void;
-  private logRead(path: string, content: string): void;
-  private logRead(path: string, content: string | number) {
-    const ctx = (self || global) as any;
-    ctx.fileReads = ctx.fileReads || {};
-
-    if (!ctx.fileReads[path] || typeof ctx.fileReads[path] === 'number') {
-      ctx.fileReads[path] = content;
-    }
-  }
-
   /**
    * Special HTTPFS function: Preload the given file into the index.
    * @param [String] path
@@ -485,6 +474,17 @@ export default class BundledHTTPRequest extends BaseFileSystem implements FileSy
       return fdBuff.toString(encoding);
     } finally {
       fd.closeSync();
+    }
+  }
+
+  private logRead(path: string, size: number): void;
+  private logRead(path: string, content: string): void;
+  private logRead(path: string, content: string | number) {
+    const ctx = (self || global) as any;
+    ctx.fileReads = ctx.fileReads || {};
+
+    if (!ctx.fileReads[path] || typeof ctx.fileReads[path] === 'number') {
+      ctx.fileReads[path] = content;
     }
   }
 
