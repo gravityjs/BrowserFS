@@ -120,7 +120,7 @@ export default class UNPKGRequest extends BaseFileSystem implements FileSystem {
    * Construct an HTTPRequest file system backend with the given options.
    */
   public static Create(opts: UNPKGRequestOptions, cb: BFSCallback<UNPKGRequest>): void {
-    const URL = `https://unpkg.com/${opts.dependency}@${opts.version}`;
+    const URL = `http://alipay.unpkg.com/${opts.dependency}@${opts.version}`;
 
     asyncDownloadFile(`${URL}/?meta`, "json", (e, data: UNPKGMeta) => {
       if (e) {
