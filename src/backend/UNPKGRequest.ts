@@ -413,7 +413,7 @@ export default class UNPKGRequest extends BaseFileSystem implements FileSystem {
     if (filePath.charAt(0) === '/') {
       filePath = filePath.slice(1);
     }
-    return `https://unpkg.com/${this.dependency}@${this.version}/${filePath}`;
+    return `http://alipay.unpkg.com/${this.dependency}@${this.version}/${filePath}`;
   }
 
   /**
