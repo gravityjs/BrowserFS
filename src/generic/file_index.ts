@@ -60,6 +60,8 @@ export class FileIndex<T> {
           // @ts-ignore
           dirInode._ls[path.basename(child.path)] = inode;
         } else {
+          // @ts-ignore
+          dirInode._ls[path.basename(child.path)] = handleDir(child.path, child);
           idx._index[child.path] = inode = handleDir(child.path, child);
         }
       });
