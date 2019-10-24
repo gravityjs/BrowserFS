@@ -1,6 +1,6 @@
 {
   "name": "gravity-browserfs",
-  "version": "20.0.0-beta1",
+  "version": "20.0.0-beta2",
   "description": "A filesystem in your browser!",
   "main": "dist/browserfs.js",
   "typings": "dist/browserfs",
