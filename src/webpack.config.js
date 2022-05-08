@@ -24,7 +24,8 @@ for (let i = 1; i < outDirComponents.length; i++) {
 fs.writeFileSync(path.join(outDir, 'BFSBuffer.js'), 'module.exports = require(\'buffer\').Buffer;\n');
 
 module.exports = {
-  devtool: 'source-map',
+  mode: 'production',
+  devtool: false,
   entry: path.join(__dirname, '..', 'build', 'temp', 'library', 'rollup', 'browserfs.rollup.js'),
   output: {
     path: __dirname,

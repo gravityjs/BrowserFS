@@ -1,4 +1,3 @@
-import sourcemaps from 'rollup-plugin-sourcemaps';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import alias from 'rollup-plugin-alias';
 import buble from 'rollup-plugin-buble';
@@ -10,7 +9,7 @@ export default {
   input: join(outBase, 'ts', 'index.js'),
   output: {
     file: join(outBase, 'rollup', 'browserfs.rollup.js'),
-    sourceMap: true,
+    sourceMap: false,
     strict: true,
     format: 'cjs',
     exports: 'named'
@@ -28,7 +27,6 @@ export default {
       jsnext: true,
       preferBuiltins: true
     }),
-    sourcemaps(),
     buble({
       transforms: {
         // Assumes all `for of` statements are on arrays or array-like items.
