@@ -118,13 +118,5 @@
     "events": "^3.0.0",
     "gitignore-parser": "^0.0.2",
     "pako": "~1.0.6"
-  },
-  "ci": {
-    "version": "12",
-    "type": "aci",
-    "coverage": false
-  },
-  "publishConfig": {
-    "registry": "https://registry.npm.alibaba-inc.com"
   }
 }
